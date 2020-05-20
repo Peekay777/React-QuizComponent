@@ -18,12 +18,20 @@ class Quiz extends Component {
         });
     }
 
+    handleResetClick() {
+        this.setState({
+            quiz_position: 1
+        });
+    }
+
     render() {
         const isQuizEnd = this.state.quiz_position - 1 === quizData.quiz_questions.length;
 
         let questionOrEnd;
         if (isQuizEnd) {
-            questionOrEnd = <QuizEnd />;
+            questionOrEnd = <QuizEnd 
+                resetClickHandler={this.handleResetClick.bind(this)}
+            />;
         } else {
             questionOrEnd = <QuizQuestion
                 showNextQuestionHandler={this.showNextQuestion.bind(this)}
